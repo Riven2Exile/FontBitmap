@@ -13,7 +13,7 @@ namespace FontBitmap
         static int BMP_WIDTH = 0;
         static int BMP_HEIGHT = 0;
 
-        static int size = 60;
+        static int size = 24;
         static string fontName = "楷体";    //字体名字
         static bool isBold = false;     //是否加粗
         static string saveFileName = "f.bmp";
@@ -26,10 +26,11 @@ namespace FontBitmap
             BMP_WIDTH = 0xFF * size;
             BMP_HEIGHT = (0xFF - 0x80) * size;
 
-            if (BMP_WIDTH % 1024 != 0)
-                BMP_WIDTH = (BMP_WIDTH / 1024 + 1) * 1024;
-            if (BMP_HEIGHT % 1024 != 0)
-                BMP_HEIGHT = (BMP_HEIGHT / 1024 + 1) * 1024;
+            // 先注释掉
+//             if (BMP_WIDTH % 1024 != 0)
+//                 BMP_WIDTH = (BMP_WIDTH / 1024 + 1) * 1024;
+//             if (BMP_HEIGHT % 1024 != 0)
+//                 BMP_HEIGHT = (BMP_HEIGHT / 1024 + 1) * 1024;
             //////
 
 
@@ -48,8 +49,8 @@ namespace FontBitmap
         static void GenerateBitmap(Bitmap fontBmp)
         {
             Graphics g = Graphics.FromImage(fontBmp);
-
-            g.FillRectangle(Brushes.Black, new Rectangle(0, 0, BMP_WIDTH, BMP_HEIGHT));
+            g.Clear(Color.FromArgb(0x00ffffff));
+            // g.FillRectangle(Brushes.Black, new Rectangle(0, 0, BMP_WIDTH, BMP_HEIGHT));
 
             byte[] gbks = new byte[2];
             gbks[0] = 0x7F;
